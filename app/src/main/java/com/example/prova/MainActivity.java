@@ -1,5 +1,6 @@
 package com.example.prova;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -12,24 +13,27 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ListView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    /*Declarando as variaveis*/
+    private Button cadastro;
+    private Button listagem;
+    private final Integer OK_TELA_CADASTR0=201;
+
     @Override
+    /*"onCreate" é  como se fosse uma "Main"*/
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.main_activity); //Seta o Layout utilizado (xml)
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        /*Captura do XML (Mapeamento)*/
+        listagem=findViewById(R.id.btn_listagem);
+        cadastro=findViewById(R.id.btn_cadastro);
     }
 
     @Override
@@ -41,9 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -52,5 +53,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /*PROCEDIMENTO "AcaoBotao", aparece na barra de opções onClick*/
+    public void TelaCadastro(View view){
+        Intent it = new Intent(MainActivity.this,Cadastro.class);//SINTAXE: Intent([Nome da classe que deseja ser o "link" de volta].this,[Nome da outra classe ("link" de ida)].class)
+        startActivityForResult(it,OK_TELA_CADASTR0);//Carrega os dados da Intent (Carrega a pagina "NovaPagina")
+    }
+
+    /*PROCEDIMENTO "AcaoBotao", aparece na barra de opções onClick*/
+    public void TelaListagem(View view){
+        Intent it = new Intent(MainActivity.this,Cadastro.class);//SINTAXE: Intent([Nome da classe que deseja ser o "link" de volta].this,[Nome da outra classe ("link" de ida)].class)
+        startActivityForResult(it,OK_TELA_CADASTR0);//Carrega os dados da Intent (Carrega a pagina "NovaPagina")
     }
 }
