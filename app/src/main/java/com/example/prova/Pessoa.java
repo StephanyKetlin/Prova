@@ -5,6 +5,15 @@ public class Pessoa {
     /*Declarando as variaveis*/
     private Integer idade;
     private String nome;
+    private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getIdade() {
         return idade;
