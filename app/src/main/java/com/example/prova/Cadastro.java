@@ -2,6 +2,7 @@ package com.example.prova;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -24,7 +25,7 @@ public class Cadastro extends AppCompatActivity {
         idade= findViewById(R.id.editText_idade);
 
         iniciaFirebase(); //Executa o método "iniciaFirebase()"
-        buscaItem(); //Executa o método "buscaItens()"
+        buscaItens(); //Executa o método "buscaItens()"
         lista= new LinkedList<>(); //Declarando uma lista
     }
 
@@ -46,13 +47,13 @@ public class Cadastro extends AppCompatActivity {
         databaseReference.child("Pessoa").child(pessoa.getId()+"").setValue(pessoa);
     }
 
-    private void buscaItem(){
+    private void buscaItem() {
         //  databaseReference.child("Pessoa").child("1");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Object nome = snapshot.child("Pessoa").child(pessoa.getId()).child(pessoa.getNome()).getValue(String.class);
-                Toast.makeText(MainActivity.this,nome.toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, nome.toString(), Toast.LENGTH_LONG).show();
                 //Pessoa pessoa = snapshot.getValue(Pessoa.class);
             }
 
@@ -61,4 +62,6 @@ public class Cadastro extends AppCompatActivity {
 
             }
         });
+    }
+
 }
